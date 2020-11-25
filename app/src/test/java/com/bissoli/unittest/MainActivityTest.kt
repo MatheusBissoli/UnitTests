@@ -3,6 +3,7 @@ package com.bissoli.unittest
 import com.google.common.truth.Truth.assertThat
 import org.junit.Before
 import org.junit.Test
+import java.lang.Double.NaN
 
 class MainActivityTest {
 
@@ -26,6 +27,14 @@ class MainActivityTest {
     }
 
     @Test
-    fun divNum() {
+    fun divNum_numGiven_returnsSuccess() {
+        val result = mainActivity.divNum(6.0, 2.0)
+        assertThat(result).isEqualTo(3.0)
+    }
+
+    @Test
+    fun divNum_numNotGiven_returnsSuccess() {
+        val result = mainActivity.divNum(0.0, 0.0)
+        assertThat(result).isEqualTo(NaN)
     }
 }

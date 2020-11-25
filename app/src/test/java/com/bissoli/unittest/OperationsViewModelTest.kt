@@ -19,6 +19,7 @@ class OperationsViewModelTest {
     fun setUp() {
         operations = Mockito.mock(Operations::class.java)
         Mockito.`when`(operations.sumNum(12, 12)).thenReturn(24)
+        Mockito.`when`(operations.divNum(6.0, 3.0)).thenReturn(2.0)
         operationsViewModel = OperationsViewModel(operations)
     }
 
@@ -27,5 +28,12 @@ class OperationsViewModelTest {
         operationsViewModel.calcSum(12, 12)
         val result = operationsViewModel.sum.value
         assertThat(result).isEqualTo(24)
+    }
+
+    @Test
+    fun calcDiv_numGiven_updateLiveData() {
+        operationsViewModel.calcDiv(6.0, 3.0)
+        val result = operationsViewModel.div.value
+        assertThat(result).isEqualTo(2.0)
     }
 }
